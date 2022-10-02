@@ -1,0 +1,37 @@
+[package]
+name = "switch-433mhz-socket"
+version = "0.1.0"
+authors = ["Sven Putze <github@hardcodes.de>"]
+description = "Send binary values via a STM32F103 Blue Pill board to a 433 MHz transmitter"
+categories = ["embedded", "no-std"]
+edition = "2018"
+
+[dependencies]
+cortex-m = "0.6.2"
+cortex-m-rt = "0.6.12"
+#cortex-m-semihosting = "0.3.5"
+# alternate panic impls, choose only one!
+#panic-halt = "0.2.0"
+#panic-semihosting = "0.5.3" # requires cortex-m-semihosting
+#panic-itm = "0.4.1"
+#panic-abort = "0.3.2"
+#panic-ramdump = "0.1.1"
+#panic-persist = "0.2.1"
+panic-rtt-target = { version = "0.1.0", features = ["cortex-m"] }
+embedded-hal = "0.2.4"
+nb = "1.0.0"
+rtt-target = { version = "0.2.0", features = ["cortex-m"] }
+
+[dependencies.stm32f1xx-hal]
+version = "0.6.1"
+features = ["rt", "stm32f103", "medium"]
+
+[[bin]]
+name = "switch-433mhz-socket"
+test = false
+bench = false
+
+[profile.release]
+lto = true
+codegen-units = 1
+debug = true
